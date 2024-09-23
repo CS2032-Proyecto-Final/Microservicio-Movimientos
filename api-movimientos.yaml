@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: Movimientos API
+  description: API for managing transfers and payments
+  version: 1.0.0
+
+paths:
+  /transferencias/:
+    post:
+      summary: Crear una transferencia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                remitente_id:
+                  type: integer
+                destinatario_id:
+                  type: integer
+                monto:
+                  type: number
+                descripcion:
+                  type: string
+      responses:
+        '200':
+          description: Transferencia creada con éxito
+
+  /transferencias/cliente/{id}/destinatarios:
+    get:
+      summary: Obtener destinatarios de un cliente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de destinatarios obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nombre_destinatario:
+                      type: string
+                    monto:
+                      type: number
+                    fecha:
+                      type: string
+                    descripcion:
+                      type: string
+
+  /transferencias/cliente/{id}/remitentes:
+    get:
+      summary: Obtener remitentes de un cliente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de remitentes obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nombre_remitente:
+                      type: string
+                    monto:
+                      type: number
+                    fecha:
+                      type: string
+                    descripcion:
+                      type: string
+
+  /pagos/:
+    post:
+      summary: Crear un pago
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                remitente_id:
+                  type: integer
+                destinatario_id:
+                  type: integer
+                monto:
+                  type: number
+                producto_id:
+                  type: integer
+                codigo:
+                  type: string
+      responses:
+        '200':
+          description: Pago realizado con éxito
+
+    get:
+      summary: Obtener pagos de un cliente
+      responses:
+        '200':
+          description: Pagos obtenidos con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    destinatario_nombre:
+                      type: string
+                    monto:
+                      type: number
+                    producto_nombre:
+                      type: string
+                    fecha:
+                      type: string
+                    codigo:
+                      type: string
+        '404':
+          description: Cliente no encontrado
