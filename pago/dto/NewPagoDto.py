@@ -1,12 +1,10 @@
 from pydantic import BaseModel
 from typing import Optional
-from datetime import datetime
 
 
-class Movimiento(BaseModel):
-    id: Optional[int] = None
+class NewPagoDto(BaseModel):
     remitente_id: int
     destinatario_id: int
     monto: float
-    fecha: datetime
-    tipo: str
+    producto_id: int
+    codigo: Optional[str] = None

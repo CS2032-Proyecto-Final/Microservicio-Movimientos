@@ -1,7 +1,7 @@
 from movimiento.domain.Movimiento import Movimiento
+from typing import Optional
 
 
 class Pago(Movimiento):
-    movimiento_id: int
     producto_id: int
-    codigo: str
+    codigo: Optional[str] = None

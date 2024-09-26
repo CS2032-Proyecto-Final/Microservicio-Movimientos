@@ -7,7 +7,7 @@ from models import Base
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI
+app = FastAPI()
 
 app.include_router(transferencia_router)
 app.include_router(pago_router)
