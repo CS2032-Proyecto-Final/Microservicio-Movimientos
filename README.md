@@ -1,5 +1,7 @@
 # Microservicio-Movimientos
 
+## Para probar localmente
+
 ### Dependencias
 - FastAPI
 - Uvicorn
@@ -26,4 +28,22 @@ DB_NAME=bd
 ### Correr api
 ```
 uvicorn main:app
+```
+
+## Para construir y correr la api en un contenedor
+
+### Construir la imagen
+```
+docker build -t api-movimientos .
+```
+
+### Correr la imagen
+```
+docker run -d -p 8000:8000 \
+  -e DB_USER=<usuario> \
+  -e DB_PASSWORD=<contraseña> \
+  -e DB_HOST=<host> \
+  -e DB_PORT=<puerto> \
+  -e DB_NAME=<nombre de la base de datos> \
+  api-movimientos
 ```
