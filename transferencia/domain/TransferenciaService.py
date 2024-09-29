@@ -21,7 +21,7 @@ class TransferenciaService:
         destinatario_ids = [i.destinatario_id for i in fullLista]
 
         response = requests.post(
-            "http://api-clientes/personas/nombre",
+            "http://api-clientes:8000/personas/nombre",
             json={destinatario_ids}
         )
 
@@ -50,7 +50,7 @@ class TransferenciaService:
         remitente_ids = [i.remitente_id for i in fullLista]
 
         response = requests.post(
-            "http://api-clientes/personas/nombre",
+            "http://api-clientes:8000/personas/nombre",
             json={remitente_ids}
         )
 

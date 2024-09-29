@@ -32,12 +32,12 @@ class PagoService:
         producto_ids = [i.producto_id for i in fullLista]
 
         tienda_response = requests.post(
-            "http://api-clientes/tiendas/nombre",
+            "http://api-clientes:8000/tiendas/nombre",
             json={tienda_ids}
         )
 
         producto_response = requests.post(
-            "http://api-promociones/productos/nombre",
+            "http://api-promociones:8000/productos/nombre",
             json={producto_ids}
         )
 
