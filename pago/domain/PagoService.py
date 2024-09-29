@@ -7,6 +7,7 @@ from pago.dto.NewPagoDto import NewPagoDto
 from pago.dto.PagoResponseDto import PagoResponseDto
 from pago.infrastructure.PagoRepository import PagoRepository
 from datetime import datetime
+from url import *
 import requests
 
 
@@ -32,12 +33,12 @@ class PagoService:
         producto_ids = [i.producto_id for i in fullLista]
 
         tienda_response = requests.post(
-            "http://api-clientes:8000/tiendas/nombre",
+            URL_MC+"/tiendas/nombre",
             json={tienda_ids}
         )
 
         producto_response = requests.post(
-            "http://api-promociones:8000/productos/nombre",
+            URL_MP+"/productos/nombre",
             json={producto_ids}
         )
 

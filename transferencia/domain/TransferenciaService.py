@@ -8,6 +8,7 @@ from transferencia.dto.TransferenciaDestinatarioResponseDto import Transferencia
 from transferencia.dto.NewTransferenciaDto import NewTransferenciaDto
 from transferencia.infrastructure.TransferenciaRepository import TransferenciaRepository
 from datetime import datetime
+from url import *
 import requests
 
 
@@ -21,7 +22,7 @@ class TransferenciaService:
         destinatario_ids = [i.destinatario_id for i in fullLista]
 
         response = requests.post(
-            "http://api-clientes:8000/personas/nombre",
+            URL_MC+"/personas/nombre",
             json={destinatario_ids}
         )
 
@@ -50,7 +51,7 @@ class TransferenciaService:
         remitente_ids = [i.remitente_id for i in fullLista]
 
         response = requests.post(
-            "http://api-clientes:8000/personas/nombre",
+            URL_MC+"/personas/nombre",
             json={remitente_ids}
         )
 
