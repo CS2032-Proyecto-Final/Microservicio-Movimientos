@@ -7,4 +7,3 @@ class NewPagoDto(BaseModel):
     destinatario_id: int
     monto: float
     producto_id: int
-    codigo: Optional[str] = None

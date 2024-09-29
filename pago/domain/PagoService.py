@@ -1,3 +1,5 @@
+import random
+import string
 from typing import List
 
 from fastapi import HTTPException
@@ -16,11 +18,14 @@ class PagoService:
         self.repo = repo
 
     def postPago(self, pagoData: NewPagoDto):
+
+        codigo_aleatorio = ''.join(random.choices(string.ascii_letters, k=3)) + '-' + ''.join(random.choices(string.digits, k=3))
+
         pago = Pago(destinatario_id=pagoData.destinatario_id,
                     remitente_id=pagoData.remitente_id,
                     monto=pagoData.monto,
                     producto_id=pagoData.producto_id,
-                    codigo=pagoData.codigo,
+                    codigo=codigo_aleatorio,
                     fecha=datetime.utcnow(),
                     tipo="pago")
 

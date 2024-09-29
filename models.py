@@ -44,7 +44,7 @@ class Pago(Movimiento):
 
     movimiento_id = Column(Integer, ForeignKey("movimientos.id"), primary_key=True)
     producto_id = Column(Integer, nullable=False)
-    codigo = Column(String(50), nullable=True)
+    codigo = Column(String(7), nullable=False)
 
     # Relación con Movimiento
     movimiento = relationship("Movimiento", back_populates="pago")

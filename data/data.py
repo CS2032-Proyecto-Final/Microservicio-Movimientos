@@ -1,3 +1,5 @@
+import string
+
 import pandas as pd
 import random
 from faker import Faker
@@ -68,7 +70,7 @@ transferencia_df.to_csv('transferencias.csv', index=False)
 pago_data = []
 for p_id in pago_ids:
     producto_id = random.randint(1, producto_id_limit)
-    codigo = fake.uuid4()
+    codigo = fake.bothify(text='???-###', letters=string.ascii_letters)
     pago_data.append({
         "movimiento_id": p_id,
         "producto_id": producto_id,
