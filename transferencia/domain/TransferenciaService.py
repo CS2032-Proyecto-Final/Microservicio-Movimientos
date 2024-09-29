@@ -19,11 +19,11 @@ class TransferenciaService:
     def getDestinatariosByRemitenteId(self, id: int) -> List[TransferenciaDestinatarioResponseDto]:
         fullLista = self.repo.findAllByRemitenteId(id)
 
-        destinatario_ids = [i.destinatario_id for i in fullLista]
+        destinatario_ids = [{"id": i.destinatario_id} for i in fullLista]
 
         response = requests.post(
             URL_MC+"/personas/nombre",
-            json={destinatario_ids}
+            json=destinatario_ids
         )
 
         if response.status_code != 200:
@@ -48,11 +48,11 @@ class TransferenciaService:
     def getRemitentesByDestinatarioId(self, id: int) -> List[TransferenciaRemitenteResponseDto]:
         fullLista = self.repo.findAllByDestinatarioId(id)
 
-        remitente_ids = [i.remitente_id for i in fullLista]
+        remitente_ids = [{"id": i.remitente_id} for i in fullLista]
 
         response = requests.post(
             URL_MC+"/personas/nombre",
-            json={remitente_ids}
+            json=remitente_ids
         )
 
         if response.status_code != 200:

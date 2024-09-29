@@ -34,17 +34,17 @@ class PagoService:
     def getPagosByClienteId(self, id: int) -> List[PagoResponseDto]:
         fullLista = self.repo.findAllByClienteId(id)
 
-        tienda_ids = [i.destinatario_id for i in fullLista]
-        producto_ids = [i.producto_id for i in fullLista]
+        tienda_ids = [{"tienda_id": i.destinatario_id} for i in fullLista]
+        producto_ids = [{"producto_id": i.producto_id} for i in fullLista]
 
         tienda_response = requests.post(
             URL_MC+"/tiendas/nombre",
-            json={tienda_ids}
+            json=tienda_ids
         )
 
         producto_response = requests.post(
             URL_MP+"/productos/nombre",
-            json={producto_ids}
+            json=producto_ids
         )
 
         if tienda_response.status_code != 200:
