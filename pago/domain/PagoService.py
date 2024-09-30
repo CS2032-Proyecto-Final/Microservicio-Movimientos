@@ -37,12 +37,12 @@ class PagoService:
         tienda_ids = [{"tienda_id": i.destinatario_id} for i in fullLista]
         producto_ids = [{"producto_id": i.producto_id} for i in fullLista]
 
-        tienda_response = requests.get(
+        tienda_response = requests.patch(
             URL_MC+"/tiendas/nombre",
             json=tienda_ids
         )
 
-        producto_response = requests.get(
+        producto_response = requests.patch(
             URL_MP+"/productos/nombre",
             json=producto_ids
         )
