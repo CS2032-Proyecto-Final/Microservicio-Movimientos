@@ -50,14 +50,15 @@ class TransferenciaService:
 
         remitente_ids = [{"id": i.remitente_id} for i in fullLista]
 
+        print(remitente_ids)
         response = requests.patch(
             URL_MC+"/personas/nombre",
             json=remitente_ids
         )
-
+        
         if response.status_code != 200:
             raise HTTPException(status_code=500, detail="Error al comunicarse con el microservicio de clientes")
-
+        
         nombres_remitentes = {item["id"]: item["nombre_destinatario"] for item in response.json()}
 
         dataLista = []
