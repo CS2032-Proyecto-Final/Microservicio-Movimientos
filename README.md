@@ -8,10 +8,11 @@
 - SQLAlchemy
 - PyMySQL
 - python-dotenv
+- requests
 - cryptography
 
 ```
-pip3 install fastapi uvicorn sqlalchemy pymysql python-dotenv cryptography
+pip3 install fastapi uvicorn sqlalchemy pymysql python-dotenv requests cryptography
 ```
 
 ### .env
