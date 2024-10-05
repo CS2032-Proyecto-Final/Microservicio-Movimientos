@@ -54,15 +54,14 @@ class PagoService:
             raise HTTPException(status_code=500, detail="Error al comunicarse con el microservicio de promociones")
 
         nombre_tiendas = {item["tienda_id"]: item["nombre_tienda"] for item in tienda_response.json()}
+        
         nombre_productos = {item["producto_id"]: item["nombre_producto"] for item in producto_response.json()}
-
+        
         dataLista = []
-
         for i in fullLista:
-
-            nombre_tienda = nombre_tiendas.get(i.remitente_id, "")
+            nombre_tienda = nombre_tiendas.get(i.destinatario_id, "")
             nombre_producto = nombre_productos.get(i.producto_id, "")
-
+            
             pagoData = PagoResponseDto(destinatario_nombre=nombre_tienda,
                                        monto=i.monto,
                                        producto_nombre=nombre_producto,
