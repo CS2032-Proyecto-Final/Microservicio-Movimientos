@@ -107,8 +107,15 @@ paths:
         '200':
           description: Pago realizado con éxito
 
+  /pagos/cliente/{id}:
     get:
       summary: Obtener pagos de un cliente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: Pagos obtenidos con éxito
