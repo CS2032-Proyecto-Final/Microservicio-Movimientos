@@ -34,6 +34,9 @@ class PagoService:
     def getPagosByClienteId(self, id: int) -> List[PagoResponseDto]:
         fullLista = self.repo.findAllByClienteId(id)
 
+        if not fullLista:
+            return []
+
         tienda_ids = [{"tienda_id": i.destinatario_id} for i in fullLista]
         producto_ids = [{"producto_id": i.producto_id} for i in fullLista]
 

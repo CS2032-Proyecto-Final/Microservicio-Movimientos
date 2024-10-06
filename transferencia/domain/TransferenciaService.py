@@ -19,6 +19,9 @@ class TransferenciaService:
     def getDestinatariosByRemitenteId(self, id: int) -> List[TransferenciaDestinatarioResponseDto]:
         fullLista = self.repo.findAllByRemitenteId(id)
 
+        if not fullLista:
+            return []
+
         destinatario_ids = [{"id": i.destinatario_id} for i in fullLista]
 
         response = requests.patch(
@@ -47,6 +50,9 @@ class TransferenciaService:
 
     def getRemitentesByDestinatarioId(self, id: int) -> List[TransferenciaRemitenteResponseDto]:
         fullLista = self.repo.findAllByDestinatarioId(id)
+
+        if not fullLista:
+            return []
 
         remitente_ids = [{"id": i.remitente_id} for i in fullLista]
 
