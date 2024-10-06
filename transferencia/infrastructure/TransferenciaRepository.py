@@ -40,4 +40,5 @@ class TransferenciaRepository:
                 return db_transferencia
         except SQLAlchemyError as e:
             db.rollback()  # Revertir los cambios en caso de error
+            print("error al guardar en la bd")
             raise e  # Propagar la excepción
