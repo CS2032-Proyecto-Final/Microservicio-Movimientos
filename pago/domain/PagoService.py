@@ -28,8 +28,12 @@ class PagoService:
                     codigo=codigo_aleatorio,
                     fecha=datetime.utcnow(),
                     tipo="pago")
+        
+        print("antes de guardar en la bd")
 
         self.repo.createPago(pago)
+
+        print("despues de guardar en la bd")
 
     def getPagosByClienteId(self, id: int) -> List[PagoResponseDto]:
         fullLista = self.repo.findAllByClienteId(id)
